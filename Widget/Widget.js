@@ -1,4 +1,3 @@
-import newsApi from "./Api.js";
 import NewsItem from "./NewsItem.js";
 import styles from "./style.js";
 import localApi from "./localApi.js";
@@ -17,7 +16,7 @@ class Widget {
         this.callbacks = {};
         this.isShow = false;
         this.isOptionsActive = false;
-        this.API = null;
+        this.api = localApi;
     }
     /**
      * Create html widget container element
@@ -52,7 +51,7 @@ class Widget {
      * Widget display switch
      */
     handleShowAndCloseWidget = () => {
-        this.newsContainer.style.display = this.isShow ? 'block' : 'none';
+        this.newsContainer.style.display = !this.isShow ? 'block' : 'none';
         this.isShow = !this.isShow;
     }
     /**
@@ -86,7 +85,7 @@ class Widget {
      * Collect content for news and put it in the newsContainer
      */
     _collectNews() {
-        this.API.getNews().then(data => {
+        this.api.getNews().then(data => {
             const newsContent = data.articles.map(obj => new NewsItem(obj, this.callbacks));
             this._setNewsButtonCounter(data.articles.length);
             newsContent.forEach(element => {
@@ -126,8 +125,7 @@ class Widget {
         width,
         height,
         button,
-        position,
-        api
+        position
     }) {
         this.newsContainer.style.width = width || '300px';
         this.newsContainer.style.height = height || '90vh';
@@ -144,7 +142,6 @@ class Widget {
             this.widgetContainer.style.right = '10px';
             this.widgetContainer.style.direction = 'ltr';
         }
-        this.API = api === 'online' ? newsApi : localApi;
         this.isOptionsActive = true;
         return;
     }
@@ -162,8 +159,7 @@ class Widget {
 const locationPoint = document.getElementById('html-academy-widget');
 const widget = new Widget(locationPoint);
 widget.options({
-    position: 'right',
-    api: 'online'
+    position: 'right'
 })
 widget.render();
 
