@@ -15,7 +15,7 @@ CDN - `https://unpkg.com/html-academy-widget@1.0.0/build/widget.min.js`
         height: '90vh', // Высота виджета. По умолчанию 90vh
         button: 'right', // Позиция кнопки виджета right | left . По умолчанию right
         position: 'right', // Расположение виджета right | left . По умолчанию right
-        api: 'local' // Подключение к апи onlien | local. По умолчанию local
+        api: 'local' // Подключение к апи online | local. По умолчанию local
     })
     widget.render();
 </script>
