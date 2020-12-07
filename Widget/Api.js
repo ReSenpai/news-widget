@@ -1,4 +1,4 @@
-const russianNewsApi = 'http://newsapi.org/v2/top-headlines?country=ru&apiKey=efbb712ca15d41b8b7f57df9f8fdf4c8';
+const russianNewsApi = 'https://newsapi.org/v2/top-headlines?country=ru&apiKey=efbb712ca15d41b8b7f57df9f8fdf4c8';
 const req = new Request(russianNewsApi);
 
 const newsApi = {
